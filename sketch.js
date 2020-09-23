@@ -1,11 +1,11 @@
 //Create variables here
-var dog,dogImg,HappyDogImg,database,foodS,foodStock;
+var dog,dogImg,HappyDogImg,database,foodStock;
+var foodS = 20;
 function preload()
 {
 	//load images here
 	dogImg = loadImage("images/dog.png");
-	HappyDogImg = loadImage("HappyDog.png")			
-			
+	HappyDogImg = loadImage("images/HappyDog.png")			
 }
 
 function setup() {
@@ -16,7 +16,7 @@ function setup() {
 	database = firebase.database()
 	foodStock = database.ref('food');
 	foodStock.on("value",readStock);
-
+    
   
 }
 
@@ -26,6 +26,7 @@ function draw() {
   if(keyWentDown(UP_ARROW)){
   	writeStock(foodS);
   	dog.addImage(HappyDogImg);
+  	foodS = foodS - 1;
 
   }
   drawSprites();
